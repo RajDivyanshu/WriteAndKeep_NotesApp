@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">WriteAndKeepNotes</string>
+    <string name="app_name">Write &amp; Keep</string>
+    <string name="app_quotes">Want to remember? don\'t skip Just Write &amp; Keep</string>
+    <string name="developer_name">By Kotlin Ninja</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
