@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_editNotesFragment"
             app:destination="@id/editNotesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_createNotesFragment2"
+            app:destination="@id/createNotesFragment" />
     </fragment>
     <fragment
         android:id="@+id/createNotesFragment"

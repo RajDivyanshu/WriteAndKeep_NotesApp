@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.kotlinninja.writeandkeepnotes.R
 import com.kotlinninja.writeandkeepnotes.databinding.FragmentCreateNotesBinding
 import com.kotlinninja.writeandkeepnotes.model.Notes
@@ -90,8 +91,12 @@ class CreateNotesFragment : Fragment() {
         )
         viewModel.addNotes(data)
 
-       // Toast.makeText(this, "Notes created successfully", Toast.LENGTH_SHORT).show( )
+        Toast.makeText(context, "Notes created successfully", Toast.LENGTH_SHORT).show( )
+
+        // ending the createnotefragment after clicking on save button
+        Navigation.findNavController(it!!).navigate(R.id.action_createNotesFragment_to_homeFragment)
     }
+
 
 
 }
