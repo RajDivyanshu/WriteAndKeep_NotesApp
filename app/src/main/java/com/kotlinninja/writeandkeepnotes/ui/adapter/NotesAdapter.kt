@@ -3,10 +3,12 @@ package com.kotlinninja.writeandkeepnotes.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.kotlinninja.writeandkeepnotes.R
 import com.kotlinninja.writeandkeepnotes.databinding.ItemNotesBinding
 import com.kotlinninja.writeandkeepnotes.model.Notes
+import com.kotlinninja.writeandkeepnotes.ui.fragments.HomeFragmentDirections
 
 class NotesAdapter(val requireContext: Context, val notesList: List<Notes>) :
     RecyclerView.Adapter<NotesAdapter.notesViewHolder>() {
@@ -42,6 +44,16 @@ class NotesAdapter(val requireContext: Context, val notesList: List<Notes>) :
             "3" -> {
                 holder.binding.viewPriority.setBackgroundResource(R.drawable.red_dot)
             }
+        }
+
+
+        holder.binding.root.setOnClickListener{
+            val action= HomeFragmentDirections.actionHomeFragmentToEditNotesFragment(data)
+            // it send the data form homefragment to edithomefragment
+            // before this we have to make model class Parcelable
+            //then add parcelable from nav_graph
+            Navigation.findNavController(it).navigate(action)
+
         }
 
     }

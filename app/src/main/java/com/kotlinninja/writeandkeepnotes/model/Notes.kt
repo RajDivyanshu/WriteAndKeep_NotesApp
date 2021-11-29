@@ -1,10 +1,12 @@
 package com.kotlinninja.writeandkeepnotes.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 // this data class makes table
-
+@Parcelize
 @Entity(tableName="Notes")
 class Notes (
 
@@ -22,4 +24,4 @@ class Notes (
 
     var priority:String
 
-    )
+    ):Parcelable
