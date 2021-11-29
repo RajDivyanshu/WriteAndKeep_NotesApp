@@ -2,14 +2,14 @@ package com.kotlinninja.writeandkeepnotes.ui.fragments
 
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.view.*
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.kotlinninja.writeandkeepnotes.R
 import com.kotlinninja.writeandkeepnotes.databinding.FragmentEditNotesBinding
 import com.kotlinninja.writeandkeepnotes.model.Notes
@@ -35,6 +35,9 @@ class EditNotesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentEditNotesBinding.inflate(layoutInflater, container, false)
+
+        //delete button start to show on action bar
+        setHasOptionsMenu(true)
 
         binding.edtTitle.setText(preNotes.data.title)
         binding.edtSubtitle.setText(preNotes.data.subTitle)
@@ -116,5 +119,39 @@ class EditNotesFragment : Fragment() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // here 'item' variable brings all the items from menu
+        if (item.itemId == R.id.menuDelete) {
+            val bottomSheet = BottomSheetDialog(requireContext(), R.style.BottomStyleSheet)
+
+            bottomSheet.setContentView(R.layout.dialog_delete)
+
+            val txtViewYes = bottomSheet.findViewById<TextView>(R.id.dialogYes)
+            val txtViewNo = bottomSheet.findViewById<TextView>(R.id.dialogNo)
+
+            txtViewYes?.setOnClickListener {
+                viewModel.deleteNotes(preNotes.data.id!!)  //notNull assertion '!!'
+                bottomSheet.dismiss()
+               //Navigation.findNavController(it!!).navigate(R.id.action_editNotesFragment_to_homeFragment)
+            }
+
+            txtViewNo?.setOnClickListener {
+                bottomSheet.dismiss()
+            }
+
+
+
+
+            bottomSheet.show()
+
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }

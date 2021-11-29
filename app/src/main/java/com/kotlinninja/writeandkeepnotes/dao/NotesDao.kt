@@ -7,7 +7,7 @@ import com.kotlinninja.writeandkeepnotes.model.Notes
 // for running quaries to access the database
 @Dao
 interface NotesDao {
-    @Query("SELECT * FROM notes")
+    @Query("SELECT * FROM Notes")
     fun getNotes(): LiveData<List<Notes>>
 // getting all notes from this function
     // this function will return live data list with the type of Notes
@@ -16,11 +16,13 @@ interface NotesDao {
 // if same quaries then replace
     fun insertNotes(notes: Notes)
 
-    @Query("DELETE FROM Notes WHERE id=id")
-    fun deleteNotes(id:Int)
+  //  @Query("DELETE FROM Notes WHERE id=id")
+  //  fun deleteNotes(id:Int)
 
 
     @Update
     fun updateNotes(notes: Notes)
 
 }
+// in interface all methods are abstract without using abstract keyword
+// in abstract method functions are declared only there is no body is written

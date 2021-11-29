@@ -17,4 +17,13 @@
     <style name="ProgressBarr">
     <item name="colorSecondary">@color/red_color</item>
     </style>
+
+    <style name="BottomStyleSheet" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Model</item>
+    </style>
+
+    <style name="Model" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/delete_sheet</item>
+    </style>
+
 </resources>

@@ -29,6 +29,7 @@ class NotesAdapter(val requireContext: Context, val notesList: List<Notes>) :
     }
 
     override fun onBindViewHolder(holder: notesViewHolder, position: Int) {
+
         val data = notesList[position]
         holder.binding.notesTitle.text = data.title
         holder.binding.notesSubtitle.text = data.subTitle
