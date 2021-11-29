@@ -1,6 +1,5 @@
-package com.kotlinninja.writeandkeepnotes.Dao
+package com.kotlinninja.writeandkeepnotes.dao
 
-import android.provider.ContactsContract
 import androidx.lifecycle.LiveData
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
