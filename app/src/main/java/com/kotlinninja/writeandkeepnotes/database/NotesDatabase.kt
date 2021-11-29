@@ -1,13 +1,16 @@
 package com.kotlinninja.writeandkeepnotes.database
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.kotlinninja.writeandkeepnotes.dao.NotesDao
+import com.kotlinninja.writeandkeepnotes.model.Notes
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 
 // exteding from room databse
+@Database(entities = [Notes::class], version = 1, exportSchema = false)
 abstract class NotesDatabase:RoomDatabase() {
     // the function which are created in abstract class have no body
 
@@ -35,7 +38,7 @@ abstract class NotesDatabase:RoomDatabase() {
                 // if it is null then run synchronized block to build database
 
                 val roomDatabseInstance =
-                    Room.databaseBuilder(context, NotesDatabase::class.java, "Notes").build()
+                    Room.databaseBuilder(context, NotesDatabase::class.java, "Notes").allowMainThreadQueries().build()
                 INSTANCE=roomDatabseInstance //reference
                 return roomDatabseInstance
             }

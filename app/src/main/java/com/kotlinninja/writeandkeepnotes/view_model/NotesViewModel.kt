@@ -9,6 +9,7 @@ import com.kotlinninja.writeandkeepnotes.repository.NotesRepository
 import kotlinx.coroutines.InternalCoroutinesApi
 
 //androidviewmodel runs in whole application
+
 @InternalCoroutinesApi
 class NotesViewModel(application: Application):AndroidViewModel(application) {
 

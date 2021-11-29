@@ -1,13 +1,11 @@
 package com.kotlinninja.writeandkeepnotes.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.kotlinninja.writeandkeepnotes.model.Notes
 
 // for running quaries to access the database
+@Dao
 interface NotesDao {
     @Query("SELECT * FROM notes")
     fun getNotes(): LiveData<List<Notes>>
@@ -19,7 +17,7 @@ interface NotesDao {
     fun insertNotes(notes: Notes)
 
     @Query("DELETE FROM Notes WHERE id=id")
-    fun deleteNotes(id:Int )
+    fun deleteNotes(id:Int)
 
 
     @Update
