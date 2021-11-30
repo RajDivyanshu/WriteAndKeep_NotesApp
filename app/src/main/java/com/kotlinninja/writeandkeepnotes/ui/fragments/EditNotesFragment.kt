@@ -26,6 +26,7 @@ class EditNotesFragment : Fragment() {
     var priority: String = "1"
 
 
+
     val viewModel: NotesViewModel by viewModels()
     lateinit var binding: FragmentEditNotesBinding
 
@@ -95,7 +96,7 @@ class EditNotesFragment : Fragment() {
 
 
         val title = binding.edtTitle.text.toString()
-        val subTitle = binding.edtSubtitle.toString()
+        val subTitle = binding.edtSubtitle.text.toString()
         val notes = binding.edtNotes.text.toString()
 
         val d = Date()
@@ -137,7 +138,13 @@ class EditNotesFragment : Fragment() {
             txtViewYes?.setOnClickListener {
                 viewModel.deleteNotes(preNotes.data.id!!)  //notNull assertion '!!'
                 bottomSheet.dismiss()
-               //Navigation.findNavController(it!!).navigate(R.id.action_editNotesFragment_to_homeFragment)
+
+                val transaction = activity?.supportFragmentManager?.beginTransaction()
+                transaction?.replace(R.id.createNotesFragment, CreateNotesFragment())
+                transaction?.commit()
+
+
+            //   Navigation.findNavController(it!!).navigate(R.id.action_editNotesFragment_to_homeFragment)
             }
 
             txtViewNo?.setOnClickListener {

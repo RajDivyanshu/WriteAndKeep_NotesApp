@@ -9,6 +9,10 @@ import com.kotlinninja.writeandkeepnotes.repository.NotesRepository
 import kotlinx.coroutines.InternalCoroutinesApi
 
 //androidviewmodel runs in whole application
+// view model takes data from repository
+// viewModel have data in the form of observer, it has observer
+// all the activity observe viewModel
+// if data is changed in this then activity & fragment update the data according to viewmodel
 
 @InternalCoroutinesApi
 class NotesViewModel(application: Application):AndroidViewModel(application) {

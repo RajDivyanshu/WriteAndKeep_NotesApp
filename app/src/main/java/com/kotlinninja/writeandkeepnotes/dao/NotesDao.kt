@@ -7,6 +7,7 @@ import com.kotlinninja.writeandkeepnotes.model.Notes
 // for running quaries to access the database
 @Dao
 interface NotesDao {
+
     @Query("SELECT * FROM Notes")
     fun getNotes(): LiveData<List<Notes>>
 // getting all notes from this function
@@ -16,8 +17,10 @@ interface NotesDao {
 // if same quaries then replace
     fun insertNotes(notes: Notes)
 
-  //  @Query("DELETE FROM Notes WHERE id=id")
-  //  fun deleteNotes(id:Int)
+//    @Delete
+//    fun deleteNotes(notes: Notes)
+    @Query("DELETE FROM Notes WHERE id=:id")
+    fun deleteNotes(id:Int)
 
 
     @Update

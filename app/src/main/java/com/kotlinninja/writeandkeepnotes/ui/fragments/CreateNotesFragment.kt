@@ -74,7 +74,7 @@ class CreateNotesFragment : Fragment() {
     @InternalCoroutinesApi
     private fun createNotes(it: View?) {
         val title = binding.edtTitle.text.toString()
-        val subTitle = binding.edtSubtitle.toString()
+        val subTitle = binding.edtSubtitle.text.toString()
         val notes = binding.edtNotes.text.toString()
 
         val d = Date()

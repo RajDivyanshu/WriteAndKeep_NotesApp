@@ -11,10 +11,10 @@ import kotlinx.coroutines.internal.synchronized
 
 // exteding from room databse
 @Database(entities = [Notes::class], version = 1, exportSchema = false)
-abstract class NotesDatabase:RoomDatabase() {
+abstract class NotesDatabase : RoomDatabase() {
     // the function which are created in abstract class have no body
 
-     // for accessing noteDao
+    // for accessing noteDao
     abstract fun myNotesDao(): NotesDao
 
 
@@ -38,8 +38,9 @@ abstract class NotesDatabase:RoomDatabase() {
                 // if it is null then run synchronized block to build database
 
                 val roomDatabseInstance =
-                    Room.databaseBuilder(context, NotesDatabase::class.java, "Notes").allowMainThreadQueries().build()
-                INSTANCE=roomDatabseInstance //reference
+                    Room.databaseBuilder(context, NotesDatabase::class.java, "Notes")
+                        .allowMainThreadQueries().build()
+                INSTANCE = roomDatabseInstance //reference
                 return roomDatabseInstance
             }
 

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_createNotesFragment2"
             app:destination="@id/createNotesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
     </fragment>
     <fragment
         android:id="@+id/createNotesFragment"
@@ -40,5 +43,13 @@
         <argument
             android:name="data"
             app:argType="com.kotlinninja.writeandkeepnotes.model.Notes" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.kotlinninja.writeandkeepnotes.news.fragment_news.NewsFragment"
+        android:label="NewsFragment" >
+        <action
+            android:id="@+id/action_newsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

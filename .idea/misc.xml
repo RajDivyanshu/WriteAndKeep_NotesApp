@@ -12,12 +12,16 @@
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/drawable/yellow_dot.xml" value="0.22552083333333334" />
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/drawable/yes_button.xml" value="0.22552083333333334" />
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/layout/activity_main.xml" value="0.209375" />
+        <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/layout/activity_news_main.xml" value="0.409375" />
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/layout/activity_splash_screen.xml" value="0.209375" />
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/layout/dialog_delete.xml" value="0.33" />
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/layout/fragment_create_notes.xml" value="0.33" />
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/layout/fragment_edit_notes.xml" value="0.209375" />
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/layout/fragment_home.xml" value="0.209375" />
+        <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/layout/fragment_news.xml" value="0.209375" />
+        <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/layout/item_news.xml" value="0.409375" />
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/layout/item_notes.xml" value="0.209375" />
+        <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/menu/action_bar_menu.xml" value="0.409375" />
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/menu/delete_menu.xml" value="0.209375" />
       </map>
     </option>

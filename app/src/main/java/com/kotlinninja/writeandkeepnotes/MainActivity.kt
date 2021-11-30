@@ -26,4 +26,10 @@ class MainActivity : AppCompatActivity() {
     }
     // here the navigation setup completed
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
+
+
     }
