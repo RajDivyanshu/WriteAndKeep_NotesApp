@@ -10,8 +10,13 @@ import com.kotlinninja.writeandkeepnotes.databinding.ItemNotesBinding
 import com.kotlinninja.writeandkeepnotes.model.Notes
 import com.kotlinninja.writeandkeepnotes.ui.fragments.HomeFragmentDirections
 
-class NotesAdapter(val requireContext: Context, val notesList: List<Notes>) :
+class NotesAdapter(val requireContext: Context, var notesList: List<Notes>) :
     RecyclerView.Adapter<NotesAdapter.notesViewHolder>() {
+
+    fun filtering(newFilterList: ArrayList<Notes>){
+        notesList= newFilterList
+        notifyDataSetChanged()
+    }
 
     //itemView: View -> costum viewbinding
     class notesViewHolder(val binding: ItemNotesBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -30,10 +35,10 @@ class NotesAdapter(val requireContext: Context, val notesList: List<Notes>) :
 
     override fun onBindViewHolder(holder: notesViewHolder, position: Int) {
 
-        val data = notesList[position]
-        holder.binding.notesTitle.text = data.title
-        holder.binding.notesSubtitle.text = data.subTitle
-        holder.binding.notesDate.text = data.date
+        val data = notesList[notesList.size-position-1]
+        holder.binding.notesTitle.text = data.title.toString()
+        holder.binding.notesSubtitle.text = data.subTitle.toString()
+        holder.binding.notesDate.text = data.date.toString()
 
         when (data.priority) {
             "1" -> {

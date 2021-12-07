@@ -13,6 +13,21 @@ interface NotesDao {
 // getting all notes from this function
     // this function will return live data list with the type of Notes
 
+
+    // extra queries for filtering
+    //getting high notes
+    @Query("SELECT * FROM Notes WHERE priority= 3")
+    fun getHighNotes(): LiveData<List<Notes>>
+
+    //getting medium notes
+    @Query("SELECT * FROM Notes WHERE priority= 2")
+    fun getMediumNotes(): LiveData<List<Notes>>
+
+    //getting low notes
+    @Query("SELECT * FROM Notes WHERE priority= 1")
+    fun getLowNotes(): LiveData<List<Notes>>
+
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
 // if same quaries then replace
     fun insertNotes(notes: Notes)

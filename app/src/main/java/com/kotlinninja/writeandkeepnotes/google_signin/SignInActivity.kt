@@ -6,54 +6,65 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.kotlinninja.writeandkeepnotes.MainActivity
 import com.kotlinninja.writeandkeepnotes.R
-import com.kotlinninja.writeandkeepnotes.R.string.default_web_client_id
 import com.kotlinninja.writeandkeepnotes.ui.fragments.HomeFragment
+
 
 class SignInActivity : AppCompatActivity() {
 
-    companion object{
-        private const val RC_SIGN_IN=120
+
+    //companion object are like static variable in Java
+    companion object {
+        private const val RC_SIGN_IN = 25
     }
 
-    lateinit var sign_in_btn:Button
-    private lateinit var mAuth:FirebaseAuth
-    private lateinit var googleSignInClient:GoogleSignInClient
+    lateinit var signInBtn: Button
+    private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignInClient: GoogleSignInClient
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
-        sign_in_btn= findViewById(R.id.btnSignIn)
+        //hiding actionbar in splash
+        supportActionBar?.hide()
+
+        signInBtn = findViewById(R.id.btnSignIn)
 
 
-
-        sign_in_btn.setOnClickListener {
-            signIn()
-        }
+        //GSO- google signIn option
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(default_web_client_id))
+            .requestIdToken("644720149374-jhlqkj5377kph3ndnenqt6ih1r89v9sq.apps.googleusercontent.com")
             .requestEmail()
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        mAuth= FirebaseAuth.getInstance()
-//"644720149374-jhlqkj5377kph3ndnenqt6ih1r89v9sq.apps.googleusercontent.com"
+        auth = FirebaseAuth.getInstance()
+
+        // auth=Firebase.auth
+        //"644720149374-jhlqkj5377kph3ndnenqt6ih1r89v9sq.apps.googleusercontent.com"
 
 
+        signInBtn.setOnClickListener {
+            signIn()
+        }
 
-
+//        btnSignIn.setOnClickListener{
+//            signIn()
+//        }
 
     }
 
@@ -76,6 +87,7 @@ class SignInActivity : AppCompatActivity() {
                     Log.d(TAG, "SignInActivity:" + account.id)
                     firebaseAuthWithGoogle(account.idToken!!)
                 } catch (e: ApiException) {
+                    Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
                     // Google Sign In failed, update UI appropriately
                     Log.w(TAG, "SignInActivity", e)
                 }
@@ -87,16 +99,17 @@ class SignInActivity : AppCompatActivity() {
 
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
-        mAuth.signInWithCredential(credential)
+        auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "SignInActivity")
-                 val intent = Intent(this, HomeFragment::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     this.finish()
 
                 } else {
+                    Toast.makeText(this, "Authentication failed ", Toast.LENGTH_SHORT).show()
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "SignInActivity", task.exception)
 

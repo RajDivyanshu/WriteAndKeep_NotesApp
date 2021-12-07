@@ -41,6 +41,8 @@ class CreateNotesFragment : Fragment() {
         binding = FragmentCreateNotesBinding.inflate(layoutInflater, container, false)
 
         binding.pGreen.setImageResource(R.drawable.ic_baseline_done) //default set to green
+        binding.pRed.setImageResource(0)
+        binding.pYellow.setImageResource(0)
         // clicking on priority button set to done
         binding.pGreen.setOnClickListener {
             priority = "1"

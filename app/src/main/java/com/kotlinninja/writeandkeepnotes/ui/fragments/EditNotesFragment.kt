@@ -98,13 +98,12 @@ class EditNotesFragment : Fragment() {
         val title = binding.edtTitle.text.toString()
         val subTitle = binding.edtSubtitle.text.toString()
         val notes = binding.edtNotes.text.toString()
-
         val d = Date()
         val notesDate: CharSequence = DateFormat.format("MMMM d, yyyy ", d.time)
 //        Log.e("@@@@", "updateNotes: $title")
 
         val data = Notes(
-            preNotes.data.id,
+            preNotes .data.id,
             title = title,
             subTitle = subTitle,
             notes = notes,
@@ -119,6 +118,8 @@ class EditNotesFragment : Fragment() {
         Navigation.findNavController(it!!).navigate(R.id.action_editNotesFragment_to_homeFragment)
 
     }
+
+    /** delete menu on action bar */
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.delete_menu, menu)
@@ -139,12 +140,13 @@ class EditNotesFragment : Fragment() {
                 viewModel.deleteNotes(preNotes.data.id!!)  //notNull assertion '!!'
                 bottomSheet.dismiss()
 
-                val transaction = activity?.supportFragmentManager?.beginTransaction()
-                transaction?.replace(R.id.createNotesFragment, CreateNotesFragment())
-                transaction?.commit()
+//                val transaction = activity?.supportFragmentManager?.beginTransaction()
+//                transaction?.replace(R.id.createNotesFragment, CreateNotesFragment())
+//                transaction?.commit()
 
 
             //   Navigation.findNavController(it!!).navigate(R.id.action_editNotesFragment_to_homeFragment)
+
             }
 
             txtViewNo?.setOnClickListener {

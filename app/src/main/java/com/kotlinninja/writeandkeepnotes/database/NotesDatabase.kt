@@ -43,6 +43,7 @@ abstract class NotesDatabase : RoomDatabase() {
                 INSTANCE = roomDatabseInstance //reference
                 return roomDatabseInstance
             }
+            //allowMainThreadQueries() allow to work queries on main thread
 
         }
 
