@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "644720149374",
+    "project_id": "writeandkeep",
+    "storage_bucket": "writeandkeep.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644720149374:android:f000186b8be5800bf7292f",
+        "android_client_info": {
+          "package_name": "com.kotlinninja.writeandkeepnotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644720149374-jhlqkj5377kph3ndnenqt6ih1r89v9sq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kotlinninja.writeandkeepnotes",
+            "certificate_hash": "db114c298065bff9cda7fe189d0adab6f77dec4e"
+          }
+        },
+        {
+          "client_id": "644720149374-ln11qbf04p2h9a8ks2j3k8qfn4ioo47s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5hBEdfeSBBTlHd4BSamXYXaTT8_GINmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644720149374-ln11qbf04p2h9a8ks2j3k8qfn4ioo47s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
