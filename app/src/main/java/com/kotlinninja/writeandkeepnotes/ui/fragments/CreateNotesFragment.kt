@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.kotlinninja.writeandkeepnotes.R
@@ -39,6 +40,8 @@ class CreateNotesFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding = FragmentCreateNotesBinding.inflate(layoutInflater, container, false)
+
+        (activity as AppCompatActivity?)!!.supportActionBar!!.setTitle("Create Notes")// setting toolbar title
 
         binding.pGreen.setImageResource(R.drawable.ic_baseline_done) //default set to green
         binding.pRed.setImageResource(0)

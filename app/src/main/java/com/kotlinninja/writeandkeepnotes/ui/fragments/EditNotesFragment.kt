@@ -1,11 +1,15 @@
 package com.kotlinninja.writeandkeepnotes.ui.fragments
 
+import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -26,17 +30,19 @@ class EditNotesFragment : Fragment() {
     var priority: String = "1"
 
 
-
     val viewModel: NotesViewModel by viewModels()
     lateinit var binding: FragmentEditNotesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
+
+
         // Inflate the layout for this fragment
         binding = FragmentEditNotesBinding.inflate(layoutInflater, container, false)
 
+        (activity as AppCompatActivity?)!!.supportActionBar!!.setTitle("Edit Notes")// toolbar title
         //delete button start to show on action bar
         setHasOptionsMenu(true)
 
@@ -103,7 +109,7 @@ class EditNotesFragment : Fragment() {
 //        Log.e("@@@@", "updateNotes: $title")
 
         val data = Notes(
-            preNotes .data.id,
+            preNotes.data.id,
             title = title,
             subTitle = subTitle,
             notes = notes,
@@ -127,10 +133,9 @@ class EditNotesFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // here 'item' variable brings all the items from menu
+      //   here 'item' variable brings all the items from menu
         if (item.itemId == R.id.menuDelete) {
             val bottomSheet = BottomSheetDialog(requireContext(), R.style.BottomStyleSheet)
-
             bottomSheet.setContentView(R.layout.dialog_delete)
 
             val txtViewYes = bottomSheet.findViewById<TextView>(R.id.dialogYes)
@@ -139,13 +144,10 @@ class EditNotesFragment : Fragment() {
             txtViewYes?.setOnClickListener {
                 viewModel.deleteNotes(preNotes.data.id!!)  //notNull assertion '!!'
                 bottomSheet.dismiss()
-
+                Navigation.findNavController(requireView()).navigate(R.id.action_editNotesFragment_to_homeFragment)
 //                val transaction = activity?.supportFragmentManager?.beginTransaction()
 //                transaction?.replace(R.id.createNotesFragment, CreateNotesFragment())
 //                transaction?.commit()
-
-
-            //   Navigation.findNavController(it!!).navigate(R.id.action_editNotesFragment_to_homeFragment)
 
             }
 
@@ -153,14 +155,46 @@ class EditNotesFragment : Fragment() {
                 bottomSheet.dismiss()
             }
 
-
-
-
             bottomSheet.show()
 
-
         }
-        return super.onOptionsItemSelected(item)
+
+//        val builder = AlertDialog.Builder(requireContext())
+//        //set title for alert dialog
+//        builder.setTitle("Do you want to Delete it?")
+//        //set message for alert dialog
+//        builder.setMessage("This will delete permanently")
+//        builder.setIcon(android.R.drawable.ic_delete)
+//
+//        //performing positive action
+//        builder.setPositiveButton("Yes") { dialogInterface, which ->
+//            viewModel.deleteNotes(preNotes.data.id!!)  //notNull assertion '!!'
+//            Toast.makeText(requireContext(), "clicked yes", Toast.LENGTH_LONG).show()
+//            Navigation.findNavController(requireView()).navigate(R.id.action_editNotesFragment_to_homeFragment)
+//
+//        }
+//        //performing cancel action
+//        builder.setNeutralButton("Cancel") { dialogInterface, which ->
+////            Toast.makeText(requireContext(), "clicked cancel\n operation cancel", Toast.LENGTH_LONG)
+////                .show()
+//        }
+//        //performing negative action
+//        builder.setNegativeButton("No") { dialogInterface, which ->
+//
+//        }
+//        // Create the AlertDialog
+//        val alertDialog: AlertDialog = builder.create()
+//        // Set other dialog properties
+//        alertDialog.setCancelable(false)
+//        alertDialog.show()
+
+
+
+
+return super.onOptionsItemSelected(item)
     }
+
+
+
 
 }

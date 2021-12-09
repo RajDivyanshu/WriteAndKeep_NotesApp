@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import com.google.firebase.auth.FirebaseAuth
 import com.kotlinninja.writeandkeepnotes.google_signin.SignInActivity
+import com.kotlinninja.writeandkeepnotes.google_signin.SignUpActivity
 import java.lang.Exception
 
 class SplashScreen : AppCompatActivity() {
@@ -21,6 +22,7 @@ class SplashScreen : AppCompatActivity() {
         supportActionBar?.hide()
 
         mAuth= FirebaseAuth.getInstance()
+        // when we logIn firebase make a current user
         val user =mAuth.currentUser
 
 //        Handler().postDelayed({
@@ -37,13 +39,14 @@ class SplashScreen : AppCompatActivity() {
             // this code will be run after 2 seconds
            // startActivity(Intent(this, MainActivity::class.java))
             if (user!=null){
-
                 startActivity(Intent(this, MainActivity::class.java))
+               // startActivity(Intent(this, MainActivity::class.java))
                 //from where to where( "this" to "MainActivity")
                 this.finish()
             } else{
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, SignUpActivity::class.java))
                  // startActivity(Intent(this, SignInActivity::class.java))
+                this.finish()
             }
 
 

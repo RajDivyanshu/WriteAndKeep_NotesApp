@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -36,6 +37,9 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title = "My Notes"
+
         setHasOptionsMenu(true) // for showing search icon on action bar
         staggeredGridLayout()
 
