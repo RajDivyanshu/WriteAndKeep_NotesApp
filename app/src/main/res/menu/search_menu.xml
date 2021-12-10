@@ -8,4 +8,19 @@
         android:title="Search"
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView" />
+
+    <item
+        android:id="@+id/sign_out"
+        android:orderInCategory="100"
+        android:title="Sign Out"
+        android:iconTint="@color/red_color"
+        android:icon="@drawable/ic_log_out"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/exitApp"
+        android:orderInCategory="100"
+        android:iconTint="@color/red_color"
+        android:icon="@drawable/ic_exit_app"
+        android:title="Exit App"
+        app:showAsAction="never" />
 </menu>

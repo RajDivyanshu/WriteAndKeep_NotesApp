@@ -60,6 +60,7 @@ class NotesAdapter(val requireContext: Context, var notesList: List<Notes>) :
             //then add parcelable from nav_graph
             Navigation.findNavController(it).navigate(action)
 
+
         }
 
     }

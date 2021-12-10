@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,8 +14,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.kotlinninja.writeandkeepnotes.R
 import com.kotlinninja.writeandkeepnotes.databinding.FragmentHomeBinding
+import com.kotlinninja.writeandkeepnotes.google_signin.LoginActivity
 import com.kotlinninja.writeandkeepnotes.model.Notes
 
 import com.kotlinninja.writeandkeepnotes.ui.adapter.NotesAdapter
@@ -24,6 +28,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
+    lateinit var firebaseAuth: FirebaseAuth
 
     @InternalCoroutinesApi
     val viewModel: NotesViewModel by viewModels()
@@ -38,6 +43,8 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
+        firebaseAuth= FirebaseAuth.getInstance()
+
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = "My Notes"
 
         setHasOptionsMenu(true) // for showing search icon on action bar
@@ -50,7 +57,7 @@ class HomeFragment : Fragment() {
 //                Log.e("@@@", "onCreateView: $i")
 //            }
             oldMyNotes = notesList as ArrayList<Notes>
-            adapter=NotesAdapter(requireContext(), notesList)
+            adapter = NotesAdapter(requireContext(), notesList)
             binding.rvAllNotes.adapter = adapter
 
         })
@@ -61,7 +68,7 @@ class HomeFragment : Fragment() {
             viewModel.getNotes().observe(viewLifecycleOwner, { notesList ->
                 staggeredGridLayout()
                 oldMyNotes = notesList as ArrayList<Notes>
-                adapter=NotesAdapter(requireContext(), notesList)
+                adapter = NotesAdapter(requireContext(), notesList)
                 binding.rvAllNotes.adapter = adapter
             })
         }
@@ -71,7 +78,7 @@ class HomeFragment : Fragment() {
             viewModel.getHighNotes().observe(viewLifecycleOwner, { notesList ->
                 staggeredGridLayout()
                 oldMyNotes = notesList as ArrayList<Notes>
-                adapter=NotesAdapter(requireContext(), notesList)
+                adapter = NotesAdapter(requireContext(), notesList)
                 binding.rvAllNotes.adapter = adapter
             })
         }
@@ -80,7 +87,7 @@ class HomeFragment : Fragment() {
             viewModel.getMediumNotes().observe(viewLifecycleOwner, { notesList ->
                 staggeredGridLayout()
                 oldMyNotes = notesList as ArrayList<Notes>
-                adapter=NotesAdapter(requireContext(), notesList)
+                adapter = NotesAdapter(requireContext(), notesList)
                 binding.rvAllNotes.adapter = adapter
             })
         }
@@ -90,7 +97,7 @@ class HomeFragment : Fragment() {
             viewModel.getLowNotes().observe(viewLifecycleOwner, { notesList ->
                 staggeredGridLayout()
                 oldMyNotes = notesList as ArrayList<Notes>
-                adapter=NotesAdapter(requireContext(), notesList)
+                adapter = NotesAdapter(requireContext(), notesList)
                 binding.rvAllNotes.adapter = adapter
             })
         }
@@ -101,10 +108,26 @@ class HomeFragment : Fragment() {
         binding.btnAddNotes.setOnClickListener {
             Navigation.findNavController(it)
                 .navigate(R.id.action_homeFragment_to_createNotesFragment)
+
         }
+
+        // finish activity on back pressed
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    activity?.finish()
+                }
+            })
+
 
         return binding.root
     }
+
+//    override fun onDetach() {
+//        super.onDetach()
+//        activity?.finish()
+//    }
+
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 //        /// opens action bar menus
 //        when (item.itemId) {
@@ -164,8 +187,30 @@ class HomeFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item!!.itemId) {
+            R.id.exitApp -> {
+                activity?.finish()
+            }
+
+            R.id.sign_out -> {
+
+                firebaseAuth.signOut()
+                Toast.makeText(context, "Sign out successfully", Toast.LENGTH_SHORT).show()
+
+                val intent=Intent(context, LoginActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
     private fun NotesFiltering(p0: String?) {
-       // Log.e("@@@", "notes Filtering: $p0")
+        // Log.e("@@@", "notes Filtering: $p0")
 
         val newFilteredList = arrayListOf<Notes>()
         for (i in oldMyNotes) {

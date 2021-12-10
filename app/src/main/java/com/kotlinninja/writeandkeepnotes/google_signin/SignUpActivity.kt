@@ -10,36 +10,41 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.kotlinninja.writeandkeepnotes.MainActivity
 import com.kotlinninja.writeandkeepnotes.R
+import com.kotlinninja.writeandkeepnotes.databinding.ActivitySignUpBinding
 
  class SignUpActivity : AppCompatActivity() {
-     lateinit var etEmail:EditText
-     lateinit var etPassword:EditText
-     lateinit var etConfirmPassword:EditText
-     lateinit var btnSignUp:Button
-     lateinit var btnLogInFromSignup:TextView
+//     lateinit var etEmail:EditText
+//     lateinit var etPassword:EditText
+//     lateinit var etConfirmPassword:EditText
+//     lateinit var btnSignUp:Button
+//     lateinit var btnLogInFromSignup:TextView
 
+     //using data binding for binding views
+     lateinit var binding:ActivitySignUpBinding
      lateinit var firebaseAuth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        binding= ActivitySignUpBinding.inflate(layoutInflater)
+        val view= binding.root
+        setContentView(view)
 
         supportActionBar?.hide()
 
-       etEmail= findViewById(R.id.etEmailAddress)
-        etPassword= findViewById(R.id.etPassword)
-        etConfirmPassword= findViewById(R.id.etConfirmPassword)
-        btnSignUp= findViewById(R.id.btnSignUp)
-        btnLogInFromSignup= findViewById(R.id.btnLogInFromSignup)
+     //  etEmail= findViewById(R.id.etEmailAddress)
+     //   etPassword= findViewById(R.id.etPassword)
+       // etConfirmPassword= findViewById(R.id.etConfirmPassword)
+      //  btnSignUp= findViewById(R.id.btnSignUp)
+       // btnLogInFromSignup= findViewById(R.id.btnLogInFromSignup)
 
         firebaseAuth= FirebaseAuth.getInstance()
 
-        btnSignUp.setOnClickListener {
+        binding.btnSignUp.setOnClickListener {
             signUp()
         }
 
-        btnLogInFromSignup.setOnClickListener {
+        binding.btnLogInFromSignup.setOnClickListener {
             val intent= Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
@@ -49,9 +54,9 @@ import com.kotlinninja.writeandkeepnotes.R
     }
 
      private fun signUp(){
-        val email:String= etEmail.text.toString()
-         val password:String= etPassword.text.toString()
-         val confirmPassword= etConfirmPassword.text.toString()
+        val email:String= binding.etEmailAddress.text.toString()
+         val password:String= binding.etPassword.text.toString()
+         val confirmPassword= binding.etConfirmPassword.text.toString()
 
          //validation
          if(email.isBlank() || password.isBlank() || confirmPassword.isBlank()){
