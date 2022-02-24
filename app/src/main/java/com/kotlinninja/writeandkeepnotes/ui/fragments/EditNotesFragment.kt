@@ -188,13 +188,6 @@ class EditNotesFragment : Fragment() {
 //        alertDialog.setCancelable(false)
 //        alertDialog.show()
 
-
-
-
 return super.onOptionsItemSelected(item)
     }
-
-
-
-
 }

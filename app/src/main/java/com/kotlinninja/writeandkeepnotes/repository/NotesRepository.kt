@@ -8,24 +8,27 @@ import com.kotlinninja.writeandkeepnotes.model.Notes
 class NotesRepository(val dao: NotesDao) {
 
 
-    fun getallNotes():LiveData<List<Notes>> = dao.getNotes()
+    fun getallNotes(): LiveData<List<Notes>> = dao.getNotes()
 // this will get all notes from NotesDao
 
 
     //for filtering
-    fun getHighNotes():LiveData<List<Notes>> = dao.getHighNotes()
-    fun getMediumNotes():LiveData<List<Notes>> = dao.getMediumNotes()
-    fun getLowNotes():LiveData<List<Notes>> = dao.getLowNotes()
+    fun getHighNotes(): LiveData<List<Notes>> = dao.getHighNotes()
+    fun getMediumNotes(): LiveData<List<Notes>> = dao.getMediumNotes()
+    fun getLowNotes(): LiveData<List<Notes>> = dao.getLowNotes()
 
-    fun insertNotes(notes: Notes){
+    //create notes
+    fun insertNotes(notes: Notes) {
         dao.insertNotes(notes)
     }
 
-    fun deleteNotes(id:Int){
+    //delete
+    fun deleteNotes(id: Int) {
         dao.deleteNotes(id)
     }
 
-    fun updateNotes(notes: Notes){
+    //update
+    fun updateNotes(notes: Notes) {
         dao.updateNotes(notes)
     }
 }

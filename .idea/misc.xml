@@ -31,10 +31,11 @@
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/menu/action_bar_menu.xml" value="0.409375" />
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/menu/delete_menu.xml" value="0.209375" />
         <entry key="..\:/Android Projects/WriteAndKeepNotes/app/src/main/res/menu/search_menu.xml" value="0.371875" />
+        <entry key="..\:/MyApps/OtherApp/WriteAndKeep_NotesApp/app/src/main/res/layout/fragment_create_notes.xml" value="0.1" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
