@@ -3,6 +3,7 @@ package com.kotlinninja.writeandkeepnotes.model
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 // this data class makes table
@@ -12,16 +13,16 @@ class Notes (
 
     //automatically generate the primary key
     @PrimaryKey(autoGenerate = true)
-    var id:Int?=null,
+    @SerializedName("Id") var id:Int?=null,
 
-    var title: String,
+    @SerializedName("Title") var title: String,
 
-    var subTitle:String,
+    @SerializedName("SubTitle") var subTitle:String,
 
-    var notes:String,
+    @SerializedName("Notes") var notes:String,
 
-    var date:String,
+    @SerializedName("Date") var date:String,
 
-    var priority:String
+    @SerializedName("Priority") var priority:String
 
     ):Parcelable
