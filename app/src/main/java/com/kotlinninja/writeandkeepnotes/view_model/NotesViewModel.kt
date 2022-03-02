@@ -29,7 +29,7 @@ class NotesViewModel(application: Application):AndroidViewModel(application) {
         repository.insertNotes(notes)
     }
 
-    fun getNotes():LiveData<List<Notes>> = repository.getallNotes()
+    fun getAllNotes():LiveData<List<Notes>> = repository.getAllNotes()
 
     fun deleteNotes(id:Int){
         repository.deleteNotes(id)

@@ -8,7 +8,7 @@ import com.kotlinninja.writeandkeepnotes.model.Notes
 class NotesRepository(val dao: NotesDao) {
 
 
-    fun getallNotes(): LiveData<List<Notes>> = dao.getNotes()
+    fun getAllNotes(): LiveData<List<Notes>> = dao.getNotes()
 // this will get all notes from NotesDao
 
 

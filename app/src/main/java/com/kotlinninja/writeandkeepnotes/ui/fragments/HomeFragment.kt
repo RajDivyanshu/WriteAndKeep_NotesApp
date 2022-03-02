@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
 
 //observe the live data
         //get all notes
-        viewModel.getNotes().observe(viewLifecycleOwner, { notesList ->
+        viewModel.getAllNotes().observe(viewLifecycleOwner, { notesList ->
 //            for (i in notesList) {
 //                Log.e("@@@", "onCreateView: $i")
 //            }
@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
 
         // getting all notes by clicking on filter btn
         binding.allNotes.setOnClickListener {
-            viewModel.getNotes().observe(viewLifecycleOwner, { notesList ->
+            viewModel.getAllNotes().observe(viewLifecycleOwner, { notesList ->
                 staggeredGridLayout()
                 oldMyNotes = notesList as ArrayList<Notes>
                 adapter = NotesAdapter(requireContext(), notesList)
